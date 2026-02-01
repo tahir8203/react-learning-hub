@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Intro from './pages/Intro';
+import AdvancedJavaScript from './pages/AdvancedJavaScript';
 import FunctionComponents from './pages/FunctionComponents';
 import RenderingComponents from './pages/RenderingComponents';
 import StateAndProps from './pages/StateAndProps';
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/intro" element={<Intro />} />
+        <Route path="/advanced" element={<AdvancedJavaScript />} />
         <Route path="/function-components" element={<FunctionComponents />} />
         <Route path="/rendering" element={<RenderingComponents />} />
         <Route path="/state-props" element={<StateAndProps />} />
