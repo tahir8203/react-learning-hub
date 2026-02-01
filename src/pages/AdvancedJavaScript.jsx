@@ -498,57 +498,32 @@ console.log(studentMap);
         {/* Quick Reference */}
         <div className="quick-reference">
           <h2>📋 Quick Reference</h2>
-          <table className="reference-table">
-            <thead>
-              <tr>
-                <th>Feature</th>
-                <th>Purpose</th>
-                <th>Example</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Arrow Function</strong></td>
-                <td>Shorter function syntax</td>
-                <td><code>const add = (a,b) => a + b</code></td>
-              </tr>
-              <tr>
-                <td><strong>Destructuring</strong></td>
-                <td>Extract values from objects/arrays</td>
-                <td><code>const {name, age} = user</code></td>
-              </tr>
-              <tr>
-                <td><strong>Props</strong></td>
-                <td>Pass data between functions</td>
-                <td><code>function show({name})</code></td>
-              </tr>
-              <tr>
-                <td><strong>Spread (...)</strong></td>
-                <td>Expand arrays/objects</td>
-                <td><code>spread operator syntax</code></td>
-              </tr>
-              <tr>
-                <td><strong>Rest (...)</strong></td>
-                <td>Collect values into array</td>
-                <td><code>function sum(...args)</code></td>
-              </tr>
-              <tr>
-                <td><strong>map()</strong></td>
-                <td>Transform each element</td>
-                <td><code>arr.map(x => x * 2)</code></td>
-              </tr>
-              <tr>
-                <td><strong>filter()</strong></td>
-                <td>Select matching elements</td>
-                <td><code>arr.filter(x => x > 5)</code></td>
-              </tr>
-              <tr>
-                <td><strong>reduce()</strong></td>
-                <td>Combine to single value</td>
-                <td><code>arr.reduce((a,b) => a+b, 0)</code></td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="reference-list">
+            <div className="ref-item">
+              <strong>Arrow Function:</strong> <span>const add = (a,b) =&gt; a + b</span>
+            </div>
+            <div className="ref-item">
+              <strong>Destructuring:</strong> <span>const {'{name, age}'} = user</span>
+            </div>
+            <div className="ref-item">
+              <strong>Props:</strong> <span>function show({'{name}'})</span>
+            </div>
+            <div className="ref-item">
+              <strong>Spread (...):</strong> <span>['...arr1, ...arr2']</span>
+            </div>
+            <div className="ref-item">
+              <strong>Rest (...):</strong> <span>function sum(...args)</span>
+            </div>
+            <div className="ref-item">
+              <strong>map():</strong> <span>arr.map(x =&gt; x * 2)</span>
+            </div>
+            <div className="ref-item">
+              <strong>filter():</strong> <span>arr.filter(x =&gt; x &gt; 5)</span>
+            </div>
+            <div className="ref-item">
+              <strong>reduce():</strong> <span>arr.reduce((a,b) =&gt; a+b, 0)</span>
+            </div>
+          </div>
         </div>
 
         <div className="key-concepts">

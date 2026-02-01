@@ -1587,36 +1587,37 @@ button:disabled {
   margin-bottom: 20px;
 }
 
-.reference-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
+.reference-list {
+  display: grid;
+  gap: 15px;
 }
 
-.reference-table th {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 15px;
-  text-align: left;
-  font-weight: 600;
-}
-
-.reference-table td {
-  padding: 15px;
-  border-bottom: 1px solid #e0e0e0;
-  vertical-align: top;
-}
-
-.reference-table tr:nth-child(even) {
+.ref-item {
   background: #f8f9fa;
+  padding: 15px 20px;
+  border-left: 4px solid #667eea;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
-.reference-table code {
-  background: #f5f5f5;
-  padding: 4px 8px;
+.ref-item strong {
+  color: #667eea;
+  min-width: 150px;
+}
+
+.ref-item span {
+  background: white;
+  padding: 8px 12px;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  flex: 1;
+  text-align: right;
 }
 
 /* Key Concepts */
