@@ -1,4 +1,105 @@
 import React from 'react';
+import Layout from '../components/Layout';
+import ExampleCard from '../components/ExampleCard';
+import TailwindDemo from '../components/TailwindDemo';
+import InteractiveStylingSandbox from '../components/InteractiveStylingSandbox';
+
+const snippetGlobal = "/* src/index.js */\nimport './styles.css'\n\n/* Component */\nfunction Card(){\n  return <div className=\"card\">Hello from Global CSS</div>\n}";
+const snippetModule = "/* Button.module.css */\n.btn { background:#667eea; color:#fff; padding:8px 12px; border-radius:6px }\n\n/* Button.jsx */\nimport styles from './Button.module.css'\nexport default function Button(){\n  return <button className={styles.btn}>Click me</button>\n}";
+const snippetInline = "const boxStyle = { padding: '12px', background: '#fafafa', borderRadius: '8px' }\n\nfunction Card(){\n  return <div style={boxStyle}>Inline styled box</div>\n}";
+const snippetStyled = "// npm install styled-components\nimport styled from 'styled-components'\n\nconst Button = styled.button`\n  background: #667eea;\n  color: white;\n  padding: 8px 12px;\n  border-radius: 6px;\n`\n\nfunction App(){\n  return <Button>Styled</Button>\n}";
+const snippetTailwind = "// install (project root)\nnpm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p\n\n// tailwind.config.js\nmodule.exports = {\n  content: ['./index.html', './src/**/*.{js,jsx}'],\n  theme: { extend: {} },\n  plugins: [],\n}";
+const snippetTailwindSteps = "# 1) Install (project root)\nnpm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p\n\n# 2) Configure tailwind.config.js content paths\nmodule.exports = {\n  content: ['./index.html', './src/**/*.{js,jsx}'],\n  theme: { extend: {} },\n  plugins: [],\n}\n\n# 3) Create src/index.css and add:\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n# 4) Import './index.css' in src/main.jsx or index.js\n# 5) Use classes in components: <div className=\"p-4 bg-white rounded\">";
+
+export default function Styling() {
+  return (
+    <Layout>
+      <div className="topic-page">
+        <div className="page-header">
+          <h1>🎨 Styling in React</h1>
+          <p className="page-subtitle">Multiple ways to style React apps — with clear examples and live previews</p>
+        </div>
+
+        <div className="topic-card">
+          <div className="topic-content">
+            <h2>What is Styling in React?</h2>
+            <p className="concept-intro">Styling controls how UI looks and feels. In React you can use global CSS, CSS Modules, inline styles, CSS-in-JS, or utility frameworks like Tailwind. Below are code + output examples with explanations.</p>
+          </div>
+        </div>
+
+        <ExampleCard title="Global CSS (example + output)">
+          <div className="example-display">
+            <pre className="code-block"><code>{snippetGlobal}</code></pre>
+            <div className="demo-output">
+              <div className="card" style={{ padding: 18, borderRadius: 10, border: '1px solid #e8e8e8', background: '#fff' }}>Hello from Global CSS</div>
+              <p className="note">Output: a simple card rendered using a global class.</p>
+            </div>
+          </div>
+          <p className="explanation">Global CSS is easy to start with — import a stylesheet and use class names. Good for simple sites and global theming.</p>
+        </ExampleCard>
+
+        <ExampleCard title="CSS Modules (scoped styles)">
+          <div className="example-display">
+            <pre className="code-block"><code>{snippetModule}</code></pre>
+            <div className="demo-output">
+              <button style={{ background: '#667eea', color: '#fff', padding: '8px 12px', borderRadius: 6, border: 'none' }}>Click me</button>
+              <p className="note">Output: component-scoped styles avoid global name collisions.</p>
+            </div>
+          </div>
+          <p className="explanation">CSS Modules compile class names to unique identifiers. Use when you need local scoping without runtime libraries.</p>
+        </ExampleCard>
+
+        <ExampleCard title="Inline styles (dynamic)">
+          <div className="example-display">
+            <pre className="code-block"><code>{snippetInline}</code></pre>
+            <div className="demo-output">
+              <div style={{ padding: 12, background: '#fafafa', borderRadius: 8 }}>Inline styled box</div>
+              <p className="note">Output: immediate styling via the <code>style</code> prop — ideal for dynamic values.</p>
+            </div>
+          </div>
+          <p className="explanation">Inline styles let you compute values in JS. They don't support pseudo-classes or media queries directly.</p>
+        </ExampleCard>
+
+        <ExampleCard title="CSS-in-JS (styled-components)">
+          <div className="example-display">
+            <pre className="code-block"><code>{snippetStyled}</code></pre>
+            <div className="demo-output">
+              <button style={{ background: '#667eea', color: '#fff', padding: '8px 12px', borderRadius: 6, border: 'none' }}>Styled</button>
+              <p className="note">Output: component-scoped styles using a runtime library; supports theming and props.</p>
+            </div>
+          </div>
+          <p className="explanation">CSS-in-JS provides powerful patterns (theming, dynamic props) at the cost of an extra dependency.</p>
+        </ExampleCard>
+
+        <ExampleCard title="Tailwind CSS (utility-first)">
+          <div className="example-display">
+            <pre className="code-block"><code>{snippetTailwind}</code></pre>
+            <div className="demo-output">
+              <button className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-5 py-2 rounded-lg shadow">Get started</button>
+              <p className="note">Output: Tailwind utilities compose styling via className. Install Tailwind and import its directives in your main CSS.</p>
+            </div>
+          </div>
+          <p className="explanation">Tailwind is ideal for rapid UI development and consistent design systems. It uses Purge/Content to remove unused CSS in production.</p>
+        </ExampleCard>
+
+        <TailwindDemo />
+
+        <InteractiveStylingSandbox />
+
+        <div className="topic-card">
+          <div className="topic-content">
+            <h2>Tailwind: When and why to use it</h2>
+            <p>Use Tailwind when you want fast, consistent UI building with smaller CSS output in production. It's great for marketing sites, admin panels, and teams that prefer utility composition over writing many custom class names.</p>
+            <h3>Full setup steps</h3>
+            <pre className="code-block"><code>{snippetTailwindSteps}</code></pre>
+            <p className="explanation">After installation, Tailwind's build step (via PostCSS/Vite) generates the utility classes used in your markup. Configure <code>content</code> to point to your templates so unused utilities are removed in production.</p>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+}
+import React from 'react';
 import TailwindDemo from '../components/TailwindDemo';
 import InteractiveStylingSandbox from '../components/InteractiveStylingSandbox';
 
