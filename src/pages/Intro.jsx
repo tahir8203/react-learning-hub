@@ -377,11 +377,9 @@ element.innerText = "Hello React";`}</pre>
             <div className="section-content">
               <div className="concept-box">
                 <h4>🧩 Component = Function that returns JSX</h4>
-                <pre className="code-block">
-{`function Hello() {
+                <pre className="code-block">{`function Hello() {
   return <h1>Hello</h1>;
-}`}
-                </pre>
+}`}</pre>
               </div>
 
               <h3>Why Components?</h3>
@@ -404,13 +402,13 @@ element.innerText = "Hello React";`}</pre>
                 </div>
               </div>
 
-              <ExampleCard title="Real Component Example">
-                <pre className="code-block">
-{`function Card({ title, price }) {
+              <div className="example-card">
+                <h4>Real Component Example</h4>
+                <pre className="code-block">{`function Card({ title, price }) {
   return (
     <div className="card">
       <h2>{title}</h2>
-      <p>Price: ${price}</p>
+      <p>Price: $\{price}</p>
     </div>
   );
 }
@@ -418,9 +416,8 @@ element.innerText = "Hello React";`}</pre>
 // Use it multiple times:
 <Card title="Product 1" price="10" />
 <Card title="Product 2" price="20" />
-<Card title="Product 3" price="30" />`}
-                </pre>
-              </ExampleCard>
+<Card title="Product 3" price="30" />`}</pre>
+              </div>
 
               <p className="note">Components are the building blocks of React apps!</p>
             </div>
