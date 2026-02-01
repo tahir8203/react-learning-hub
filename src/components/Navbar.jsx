@@ -19,6 +19,9 @@ export function Navbar() {
             <Link to="/advanced" className="nav-link">Advanced JS</Link>
           </li>
           <li className="nav-item">
+            <Link to="/styling" className="nav-link">Styling</Link>
+          </li>
+          <li className="nav-item">
             <Link to="/function-components" className="nav-link">Functions</Link>
           </li>
           <li className="nav-item">
