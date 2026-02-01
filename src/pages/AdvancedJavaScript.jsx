@@ -525,12 +525,12 @@ console.log(studentMap);
               <tr>
                 <td><strong>Spread (...)</strong></td>
                 <td>Expand arrays/objects</td>
-                <td><code>[...arr1, ...arr2]</code></td>
+                <td><code>{'[...arr1, ...arr2]'}</code></td>
               </tr>
               <tr>
                 <td><strong>Rest (...)</strong></td>
                 <td>Collect values into array</td>
-                <td><code>function sum(...nums)</code></td>
+                <td><code>{'function sum(...nums)'}</code></td>
               </tr>
               <tr>
                 <td><strong>map()</strong></td>
