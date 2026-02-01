@@ -14,10 +14,18 @@ body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
   color: #333;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 html, body, #root {
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 /* Layout */
@@ -803,6 +811,7 @@ html, body, #root {
   max-width: 100%;
   width: 100%;
   padding: 0;
+  margin: 0;
 }
 
 .intro-hero {

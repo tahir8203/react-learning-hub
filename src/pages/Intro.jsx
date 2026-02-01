@@ -109,9 +109,9 @@ export default function Intro() {
           >
             <span className="section-number">Part 2</span>
             <span>What React ACTUALLY Is</span>
-            <span className="toggle-icon">{activeSection === 'part2' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part2'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part2' && (
+          {expandedSections['part2'] && (
             <div className="section-content">
               <div className="two-column">
                 <div className="column is-react">
@@ -143,9 +143,9 @@ export default function Intro() {
           >
             <span className="section-number">Part 3</span>
             <span>Prerequisites of React (CRITICAL)</span>
-            <span className="toggle-icon">{activeSection === 'part3' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part3'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part3' && (
+          {expandedSections['part3'] && (
             <div className="section-content">
               <h3>Why You Cannot Just Open React in Browser</h3>
               
@@ -184,9 +184,9 @@ export default function Intro() {
           >
             <span className="section-number">Part 4</span>
             <span>Tools React Needs</span>
-            <span className="toggle-icon">{activeSection === 'part4' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part4'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part4' && (
+          {expandedSections['part4'] && (
             <div className="section-content">
               <table className="tools-table">
                 <thead>
@@ -226,9 +226,9 @@ export default function Intro() {
           >
             <span className="section-number">Part 5</span>
             <span>Windows Setup (FROM ZERO)</span>
-            <span className="toggle-icon">{activeSection === 'part5' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part5'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part5' && (
+          {expandedSections['part5'] && (
             <div className="section-content">
               <h3>Step 1: Install Node.js</h3>
               <ol className="setup-steps">
@@ -257,9 +257,9 @@ npm -v`}
           >
             <span className="section-number">Part 6</span>
             <span>What npm Is</span>
-            <span className="toggle-icon">{activeSection === 'part6' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part6'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part6' && (
+          {expandedSections['part6'] && (
             <div className="section-content">
               <div className="concept-box">
                 <h4>npm = Node Package Manager</h4>
@@ -286,9 +286,9 @@ npm -v`}
           >
             <span className="section-number">Part 7</span>
             <span>Creating Your First React Project</span>
-            <span className="toggle-icon">{activeSection === 'part7' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part7'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part7' && (
+          {expandedSections['part7'] && (
             <div className="section-content">
               <h3>Step-by-Step (Live Coding)</h3>
               <pre className="code-block">
@@ -314,9 +314,9 @@ npm run dev`}
           >
             <span className="section-number">Part 10</span>
             <span>What is JSX?</span>
-            <span className="toggle-icon">{activeSection === 'part10' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part10'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part10' && (
+          {expandedSections['part10'] && (
             <div className="section-content">
               <div className="concept-box">
                 <h4>JSX = JavaScript XML</h4>
@@ -371,9 +371,9 @@ element.innerText = "Hello React";`}</pre>
           >
             <span className="section-number">Part 11</span>
             <span>What is a Component?</span>
-            <span className="toggle-icon">{activeSection === 'part11' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part11'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part11' && (
+          {expandedSections['part11'] && (
             <div className="section-content">
               <div className="concept-box">
                 <h4>🧩 Component = Function that returns JSX</h4>
@@ -435,9 +435,9 @@ element.innerText = "Hello React";`}</pre>
           >
             <span className="section-number">Part 11B</span>
             <span>What are Props?</span>
-            <span className="toggle-icon">{activeSection === 'part11b' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part11b'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part11b' && (
+          {expandedSections['part11b'] && (
             <div className="section-content">
               <div className="concept-box">
                 <h4>Props = Data sent from parent to child component</h4>
@@ -482,9 +482,9 @@ function App() {
           >
             <span className="section-number">📋</span>
             <span>Key Takeaways</span>
-            <span className="toggle-icon">{activeSection === 'summary' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['summary'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'summary' && (
+          {expandedSections['summary'] && (
             <div className="section-content">
               <div className="key-takeaways">
                 <div className="takeaway">
