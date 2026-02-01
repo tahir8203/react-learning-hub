@@ -330,6 +330,35 @@ html, body, #root {
   gap: 16px;
 }
 
+/* Example display: code + output side-by-side */
+.example-display {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.demo-output {
+  min-width: 220px;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.demo-output .note {
+  font-size: 13px;
+  color: #555;
+}
+
+.card {
+  background: #ffffff;
+  padding: 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(102,126,234,0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
 .code-section {
   display: flex;
   flex-direction: column;

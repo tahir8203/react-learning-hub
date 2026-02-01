@@ -19,22 +19,19 @@ export default function Styling() {
         <h2>What is Styling in React?</h2>
         <p>
           Styling in React refers to applying CSS to components to control layout,
-          colors, spacing and visual behavior. React supports multiple ways to
-          style components, from traditional global stylesheets to modern
+          import Layout from '../components/Layout';
+          import ExampleCard from '../components/ExampleCard';
           utility-first libraries like Tailwind CSS.
         </p>
-      </section>
-
-      <section className="examples">
-        <h2>How to use CSS in React — common approaches</h2>
-        <p>There are several common ways to style React apps (examples below):</p>
-        <ol>
-          <li>Global CSS files (imported in your app)</li>
           <li>CSS Modules (scoped, file-level CSS)</li>
-          <li>Inline styles (JS objects via the style prop)</li>
-          <li>CSS-in-JS libraries (styled-components, Emotion)</li>
-          <li>Utility-first frameworks (Tailwind CSS)</li>
-        </ol>
+          export default function Styling() {
+            return (
+              <Layout>
+                <div className="topic-page">
+                  <div className="page-header">
+                    <h1>🎨 Styling in React</h1>
+                    <p className="page-subtitle">Multiple ways to style React apps — with clear examples and live previews</p>
+                  </div>
 
         <div className="example-card">
           <h4>Example 1 — Global CSS</h4>
@@ -107,12 +104,12 @@ function Card(){
             <CodeBlock>{`// npm install styled-components
 import styled from 'styled-components'
 
-const Button = styled.button`
+const Button = styled.button\`
   background: #667eea;
   color: white;
   padding: 8px 12px;
   border-radius: 6px;
-`
+\`
 
 function App(){
   return <Button>Styled</Button>
@@ -187,6 +184,9 @@ function Box(){
           component-class names for each style.
         </p>
       </section>
+              </Layout>
+            );
+          }
 
       <section className="examples">
         <h2>Tailwind — Quick Example</h2>
