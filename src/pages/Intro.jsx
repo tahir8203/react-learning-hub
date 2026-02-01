@@ -3,10 +3,13 @@ import Layout from '../components/Layout';
 import ExampleCard from '../components/ExampleCard';
 
 export default function Intro() {
-  const [activeSection, setActiveSection] = useState('part0');
+  const [expandedSections, setExpandedSections] = useState({});
 
   const toggleSection = (section) => {
-    setActiveSection(activeSection === section ? null : section);
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
   };
 
   return (
@@ -27,9 +30,9 @@ export default function Intro() {
           >
             <span className="section-number">Part 0</span>
             <span>Before React: How Websites Really Work</span>
-            <span className="toggle-icon">{activeSection === 'part0' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part0'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part0' && (
+          {expandedSections['part0'] && (
             <div className="section-content">
               <h3>What happens when you open a website?</h3>
               <ol className="concept-list">
@@ -74,9 +77,9 @@ export default function Intro() {
           >
             <span className="section-number">Part 1</span>
             <span>Why React Exists (The Real Reason)</span>
-            <span className="toggle-icon">{activeSection === 'part1' ? '▼' : '▶'}</span>
+            <span className="toggle-icon">{expandedSections['part1'] ? '▼' : '▶'}</span>
           </button>
-          {activeSection === 'part1' && (
+          {expandedSections['part1'] && (
             <div className="section-content">
               <h3>Imagine This Scenario</h3>
               <p>You're building a task app where:</p>
