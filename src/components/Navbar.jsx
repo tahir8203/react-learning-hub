@@ -13,6 +13,9 @@ export function Navbar() {
             <Link to="/" className="nav-link">Home</Link>
           </li>
           <li className="nav-item">
+            <Link to="/intro" className="nav-link">Intro</Link>
+          </li>
+          <li className="nav-item">
             <Link to="/function-components" className="nav-link">Functions</Link>
           </li>
           <li className="nav-item">
