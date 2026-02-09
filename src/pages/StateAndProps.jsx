@@ -55,6 +55,7 @@ export function StateAndProps() {
   const [parentMessage, setParentMessage] = useState('Hello Child!');
   const [parentCount, setParentCount] = useState(5);
   const [showCodeExplanation, setShowCodeExplanation] = useState(false);
+  const [showLiftingStateExplanation, setShowLiftingStateExplanation] = useState(false);
 
   const exampleCode1 = `import { useState } from 'react';
 
@@ -289,6 +290,73 @@ export default Counter;`;
                 The parent manages the state and passes it as props to both children.
                 This way, siblings can "communicate" through a shared parent state.
               </p>
+              <button
+                className="demo-button"
+                onClick={() => setShowLiftingStateExplanation(!showLiftingStateExplanation)}
+              >
+                {showLiftingStateExplanation ? 'Hide Why and Where' : 'Why and Where It Is Used'}
+              </button>
+              {showLiftingStateExplanation && (
+                <div style={{ marginTop: '16px' }}>
+                  <h4>The Core Idea</h4>
+                  <p className="explanation">
+                    Lifting state up means moving shared data to the closest common parent so multiple components
+                    use one source of truth.
+                  </p>
+
+                  <h5>Step-by-step</h5>
+                  <h6>1. State lives in the parent</h6>
+                  <pre className="code-block">{`const [count, setCount] = useState(0);`}</pre>
+                  <p className="explanation">
+                    The parent owns the data. Any update affects every child that depends on it, avoiding duplicate
+                    or inconsistent values.
+                  </p>
+
+                  <h6>2. Parent updates the state</h6>
+                  <pre className="code-block">{`<button onClick={() => setCount(count + 1)}>Increment</button>`}</pre>
+                  <p className="explanation">
+                    Updates stay centralized and predictable. When count changes, parent and children re-render.
+                  </p>
+
+                  <h6>3. Parent passes state down as props</h6>
+                  <pre className="code-block">{`<Child1 count={count} />
+<Child2 count={count} />`}</pre>
+                  <p className="explanation">
+                    Children receive data as read-only props. This enforces one-way flow: Parent to Child.
+                  </p>
+
+                  <h6>4. Child components stay simple</h6>
+                  <pre className="code-block">{`function Child1({ count }) {
+  return <p>Child 1 sees: {count}</p>;
+}`}</pre>
+                  <p className="explanation">
+                    Simple children are easier to test, reuse, and reason about.
+                  </p>
+
+                  <h5>Why It Is Used</h5>
+                  <ul>
+                    <li>Avoids duplicate and inconsistent data across siblings.</li>
+                    <li>Matches React one-way data flow: data down, actions up.</li>
+                    <li>Centralizes logic for easier debugging and maintenance.</li>
+                    <li>Keeps child components reusable and focused on rendering.</li>
+                  </ul>
+
+                  <h5>Where It Is Used</h5>
+                  <ul>
+                    <li>Forms where multiple inputs share and submit one data model.</li>
+                    <li>Search/filter UIs where controls and result lists must stay in sync.</li>
+                    <li>Dashboards with multiple views of the same data.</li>
+                    <li>Sibling communication through a shared parent state.</li>
+                    <li>Parent-controlled logic like validation, permissions, and disabling actions.</li>
+                  </ul>
+
+                  <h5>When Not To Lift State</h5>
+                  <p className="explanation">
+                    If only one component uses the data and no one else depends on it, keep state local. Lift only
+                    when data is shared.
+                  </p>
+                </div>
+              )}
             </div>
             <div className="interactive-demo">
               <h4>Live Demo:</h4>
