@@ -54,6 +54,7 @@ function LiftedStateExample() {
 export function StateAndProps() {
   const [parentMessage, setParentMessage] = useState('Hello Child!');
   const [parentCount, setParentCount] = useState(5);
+  const [showCodeExplanation, setShowCodeExplanation] = useState(false);
 
   const exampleCode1 = `import { useState } from 'react';
 
@@ -111,6 +112,25 @@ function Child2({ count }) {
   return <p>Child 2 sees: {count}</p>;
 }`;
 
+  const counterCodeExample = `import { useState } from "react";
+
+function Counter() {
+  // Declare a state variable
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+
+      <button onClick={() => setCount(count + 1)}>
+        Increase
+      </button>
+    </div>
+  );
+}
+
+export default Counter;`;
+
   return (
     <Layout>
       <div className="topic-page">
@@ -140,6 +160,82 @@ function Child2({ count }) {
                 It returns an array: the current state value and a function to update it.
                 When you call the setter function, React re-renders the component with the new state.
               </p>
+              <button
+                className="demo-button"
+                onClick={() => setShowCodeExplanation(!showCodeExplanation)}
+              >
+                {showCodeExplanation ? 'Hide Explaination' : 'Code Explaination'}
+              </button>
+              {showCodeExplanation && (
+                <div style={{ marginTop: '16px' }}>
+                  <h4>Example: Counter using useState</h4>
+                  <h5>Code</h5>
+                  <CodeBlock code={counterCodeExample} language="jsx" />
+                  <p className="explanation"><strong>Explanation (line by line, plain language)</strong></p>
+
+                  <h5>1. useState import</h5>
+                  <pre className="code-block">{`import { useState } from "react";`}</pre>
+                  <p className="explanation">
+                    <code>useState</code> is a React hook.
+                    Hooks let function components remember data between renders.
+                  </p>
+
+                  <h5>2. Creating state</h5>
+                  <pre className="code-block">{`const [count, setCount] = useState(0);`}</pre>
+                  <p className="explanation">This line does three things:</p>
+                  <ul>
+                    <li><strong>count</strong>{' -> '}the current value of the state</li>
+                    <li><strong>setCount</strong>{' -> '}a function to update that value</li>
+                    <li><strong>0</strong>{' -> '}the initial value (when the component loads the first time)</li>
+                  </ul>
+                  <p className="explanation">
+                    Think of it like: "React, please store a number for me, starting at 0."
+                  </p>
+
+                  <h5>3. Using state in JSX</h5>
+                  <pre className="code-block">{`<p>Count: {count}</p>`}</pre>
+                  <ul>
+                    <li><code>{'{count}'}</code> displays the current state value.</li>
+                    <li>When <code>count</code> changes, React automatically re-renders this text.</li>
+                    <li>No manual DOM updates.</li>
+                  </ul>
+
+                  <h5>4. Updating state</h5>
+                  <pre className="code-block">{`<button onClick={() => setCount(count + 1)}>`}</pre>
+                  <ul>
+                    <li><code>onClick</code> runs when the button is pressed.</li>
+                    <li><code>setCount(count + 1)</code> updates the state.</li>
+                    <li>React re-renders the component with the new value.</li>
+                  </ul>
+                  <p className="explanation">
+                    <strong>Important rule:</strong><br />
+                    Never change state directly<br />
+                    <code>{`count = count + 1`}</code> (wrong)<br />
+                    <code>{`setCount(count + 1)`}</code> (correct)
+                  </p>
+
+                  <h5>What "state" really means</h5>
+                  <p className="explanation">
+                    State is data that belongs to a component, can change over time,
+                    and when it changes, the UI updates automatically.
+                    If the data affects what the user sees, it should probably be state.
+                  </p>
+
+                  <h5>Mental model (simple but accurate)</h5>
+                  <ul>
+                    <li><strong>Props</strong>{' -> '}data coming from outside</li>
+                    <li><strong>State</strong>{' -> '}data managed inside the component</li>
+                  </ul>
+
+                  <h5>One common beginner mistake</h5>
+                  <pre className="code-block">{`let count = 0; // wrong`}</pre>
+                  <p className="explanation">
+                    This won't work because React doesn't track normal variables,
+                    and changing them doesn't trigger re-render.
+                    That's why <code>useState</code> exists.
+                  </p>
+                </div>
+              )}
             </div>
             <div className="interactive-demo">
               <h4>Live Demo:</h4>
