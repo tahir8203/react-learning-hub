@@ -115,6 +115,8 @@ function FormDemo() {
 }
 
 export function EventHandling() {
+  const [showExample1Explanation, setShowExample1Explanation] = useState(false);
+
   const exampleCode1 = `function ClickDemo() {
   const [count, setCount] = useState(0);
 
@@ -211,6 +213,85 @@ export function EventHandling() {
                 updates the state, causing React to re-render the component with the new count. This is a fundamental
                 pattern for handling user interactions.
               </p>
+              <button
+                className="demo-button"
+                onClick={() => setShowExample1Explanation(!showExample1Explanation)}
+              >
+                {showExample1Explanation ? 'Hide Example 1 Explanation' : 'Explain Example 1'}
+              </button>
+              {showExample1Explanation && (
+                <div style={{ marginTop: '16px' }}>
+                  <h4>What Problem This Solves</h4>
+                  <p className="explanation">
+                    The user clicks a button and the UI should update based on that action. In React, this flow is:
+                    Event to State update to UI re-render.
+                  </p>
+
+                  <h5>Step-by-step Explanation</h5>
+                  <h6>1. State declaration</h6>
+                  <pre className="code-block">{`const [count, setCount] = useState(0);`}</pre>
+                  <ul>
+                    <li><code>count</code> stores how many times the button was clicked.</li>
+                    <li><code>0</code> is the starting value.</li>
+                    <li><code>setCount</code> is the correct way to update this state.</li>
+                  </ul>
+
+                  <h6>2. Event handler function</h6>
+                  <pre className="code-block">{`const handleClick = () => {
+  setCount(count + 1);
+};`}</pre>
+                  <ul>
+                    <li><code>handleClick</code> is a normal JavaScript function.</li>
+                    <li>It runs only when React triggers it on click.</li>
+                    <li><code>setCount</code> tells React state changed and should re-render.</li>
+                  </ul>
+
+                  <h6>3. Attaching the event</h6>
+                  <pre className="code-block">{`<button onClick={handleClick}>Click Me</button>`}</pre>
+                  <p className="explanation">
+                    Pass the function reference, not the function call.
+                  </p>
+                  <ul>
+                    <li>Correct: <code>onClick={'{handleClick}'}</code></li>
+                    <li>Wrong: <code>onClick={'{handleClick()}'}</code> (runs immediately)</li>
+                  </ul>
+
+                  <h6>4. Rendering state in UI</h6>
+                  <pre className="code-block">{`<p>Clicks: {count}</p>`}</pre>
+                  <p className="explanation">
+                    When <code>count</code> changes, React re-renders and updates this text automatically.
+                  </p>
+
+                  <h5>What Happens On Click (Timeline)</h5>
+                  <ol>
+                    <li>User clicks the button.</li>
+                    <li>React triggers <code>handleClick</code>.</li>
+                    <li><code>setCount</code> schedules a state update.</li>
+                    <li>React re-renders the component.</li>
+                    <li>New count value appears in the UI.</li>
+                  </ol>
+
+                  <h5>Why This Pattern Is Fundamental</h5>
+                  <p className="explanation">
+                    Buttons, forms, dropdowns, toggles, and sliders all follow the same mental model:
+                    Event to State to UI.
+                  </p>
+
+                  <h5>Important Detail for Real Apps</h5>
+                  <pre className="code-block">{`setCount(prev => prev + 1);`}</pre>
+                  <p className="explanation">
+                    Prefer this functional update when the new value depends on previous state, especially for rapid updates.
+                  </p>
+
+                  <h5>Summary</h5>
+                  <ul>
+                    <li><code>onClick</code> listens for user action.</li>
+                    <li><code>handleClick</code> runs on that action.</li>
+                    <li><code>setCount</code> updates state.</li>
+                    <li>React re-renders and UI stays in sync.</li>
+                  </ul>
+                </div>
+              )}
             </div>
             <div className="interactive-demo">
               <h4>Live Demo:</h4>
