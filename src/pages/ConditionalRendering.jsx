@@ -97,6 +97,33 @@ function NotificationDemo() {
   );
 }
 
+function WelcomeMessage({ isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn && <p>Welcome User</p>}
+    </div>
+  );
+}
+
+function WelcomeMessageDemo() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  return (
+    <div className="conditional-demo">
+      <label>
+        <input
+          type="checkbox"
+          checked={isLoggedIn}
+          onChange={() => setIsLoggedIn(!isLoggedIn)}
+          aria-label="Toggle login state"
+        />
+        {' '}Logged in
+      </label>
+      <WelcomeMessage isLoggedIn={isLoggedIn} />
+    </div>
+  );
+}
+
 export function ConditionalRendering() {
   const exampleCode1 = `function LoginDemo() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -137,6 +164,16 @@ export function ConditionalRendering() {
     </div>
   );
 }`;
+
+  const exampleCode4 = `function WelcomeMessage({ isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn && <p>Welcome User</p>}
+    </div>
+  );
+}`;
+
+  const exampleCode4Usage = `<WelcomeMessage isLoggedIn={true} />`;
 
   return (
     <Layout>
@@ -201,6 +238,47 @@ export function ConditionalRendering() {
             <div className="interactive-demo">
               <h4>Live Demo:</h4>
               <NotificationDemo />
+            </div>
+          </ExampleCard>
+
+          <ExampleCard title="Example 4: Show Welcome User Only When Logged In">
+            <div className="code-section">
+              <h4>Conditional rendering: show "Welcome User" only when logged in</h4>
+              <CodeBlock code={exampleCode4} language="jsx" />
+              <h4>Usage:</h4>
+              <CodeBlock code={exampleCode4Usage} language="jsx" />
+
+              <h4>Choice of operator and explanation</h4>
+              <p className="explanation"><strong>Operator used:</strong> <code>&&</code> (logical AND)</p>
+              <p className="explanation">
+                <strong>Why this is the better choice here:</strong>
+              </p>
+              <ul>
+                <li>Only one condition needs to be checked.</li>
+                <li>There is no alternative UI to show when the user is not logged in.</li>
+                <li>The expression reads naturally: If logged in, show this.</li>
+              </ul>
+              <CodeBlock code={`isLoggedIn && <p>Welcome User</p>`} language="jsx" />
+
+              <h4>Why not ternary in this case?</h4>
+              <CodeBlock code={`isLoggedIn ? <p>Welcome User</p> : null`} language="jsx" />
+              <p className="explanation">This is correct, but:</p>
+              <ul>
+                <li>Slightly more verbose</li>
+                <li>Adds an unnecessary else case</li>
+                <li>Reduces readability for simple conditions</li>
+              </ul>
+
+              <h4>How React handles this logic internally</h4>
+              <ul>
+                <li>If <code>isLoggedIn</code> is true, React renders <code>&lt;p&gt;Welcome User&lt;/p&gt;</code>.</li>
+                <li>If false, React ignores the expression.</li>
+                <li>No re-render happens unless <code>isLoggedIn</code> changes.</li>
+              </ul>
+            </div>
+            <div className="interactive-demo">
+              <h4>Live Demo:</h4>
+              <WelcomeMessageDemo />
             </div>
           </ExampleCard>
         </section>

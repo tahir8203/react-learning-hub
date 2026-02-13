@@ -65,11 +65,13 @@ html, body, #root {
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  min-height: 70px;
+  height: auto;
+  gap: 10px;
 }
 
 .navbar-logo {
@@ -87,7 +89,10 @@ html, body, #root {
   list-style: none;
   gap: 8px;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex: 1;
+  min-width: 0;
 }
 
 .nav-item {
@@ -737,6 +742,7 @@ html, body, #root {
     flex-direction: column;
     gap: 12px;
     padding: 12px;
+    align-items: flex-start;
   }
 
   .navbar-logo {
@@ -745,7 +751,7 @@ html, body, #root {
 
   .nav-menu {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 6px;
   }
 

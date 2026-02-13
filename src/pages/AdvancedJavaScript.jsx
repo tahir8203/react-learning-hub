@@ -75,6 +75,18 @@ console.log(sayHello()); // Hello World`}
                 </pre>
               </ExampleCard>
 
+              <ExampleCard title="Arrow Function Receiving an Array of Marks">
+                <pre className="code-block">
+{`const receiveMarks = (marks) => marks;
+
+console.log(receiveMarks([72, 81, 64, 90]));
+// [72, 81, 64, 90]`}
+                </pre>
+                <p className="note">
+                  Arrow functions provide a short, clear syntax to define functions, making intent obvious and reducing boilerplate.
+                </p>
+              </ExampleCard>
+
               <div className="benefits-box">
                 <h3>✅ Benefits:</h3>
                 <ul>
@@ -360,6 +372,20 @@ console.log(names);
                 </pre>
               </ExampleCard>
 
+              <ExampleCard title="Using map() to Increase Each Mark by 5%">
+                <pre className="code-block">
+{`const marks = [40, 55, 80, 95];
+
+const increasedMarks = marks.map(mark => mark + mark * 0.05);
+
+console.log(increasedMarks);
+// [42, 57.75, 84, 99.75]`}
+                </pre>
+                <p className="note">
+                  map() transforms each element and returns a new array, improving readability by clearly expressing data transformation.
+                </p>
+              </ExampleCard>
+
               <ExampleCard title="Real-World: Transforming Data">
                 <pre className="code-block">
 {`const products = [
@@ -415,6 +441,20 @@ const passedStudents = students.filter(s => s.marks >= 50);
 console.log(passedStudents);
 // [{ name: 'Ali', marks: 80 }, { name: 'Ahmed', marks: 75 }]`}
                 </pre>
+              </ExampleCard>
+
+              <ExampleCard title="Using filter() to Keep Marks >= 50">
+                <pre className="code-block">
+{`const increasedMarks = [42, 57.75, 84, 99.75];
+
+const passedMarks = increasedMarks.filter(mark => mark >= 50);
+
+console.log(passedMarks);
+// [57.75, 84, 99.75]`}
+                </pre>
+                <p className="note">
+                  filter() cleanly separates valid data from invalid data without modifying the original array.
+                </p>
               </ExampleCard>
 
               <ExampleCard title="Real-World: Filter Products">
@@ -473,6 +513,21 @@ const totalPrice = cart.reduce(
 console.log(totalPrice);
 // 55000`}
                 </pre>
+              </ExampleCard>
+
+              <ExampleCard title="Using reduce() to Calculate the Average">
+                <pre className="code-block">
+{`const passedMarks = [57.75, 84, 99.75];
+
+const average =
+  passedMarks.reduce((sum, mark) => sum + mark, 0) / passedMarks.length;
+
+console.log(average);
+// 80.5`}
+                </pre>
+                <p className="note">
+                  reduce() combines multiple values into a single result, keeping aggregation logic concise and maintainable.
+                </p>
               </ExampleCard>
 
               <ExampleCard title="Building an Object from Array">

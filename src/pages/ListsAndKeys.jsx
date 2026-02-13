@@ -108,6 +108,8 @@ function UserCardsDemo() {
 }
 
 export function ListsAndKeys() {
+  const [showExample3Explanation, setShowExample3Explanation] = useState(false);
+
   const exampleCode1 = `const fruits = ['Apple', 'Banana', 'Orange'];
 
 // Map array to JSX elements
@@ -169,6 +171,93 @@ export function ListsAndKeys() {
                 Each item has a <code>key</code> prop. In this simple example, the index works as a key because
                 the list never changes order.
               </p>
+              <div className="explanation">
+                <h4>Line-by-Line Explanation</h4>
+                <p>
+                  Let&apos;s go through this line by line, focusing on what React is actually doing, not just
+                  repeating definitions.
+                </p>
+                <p>
+                  <code>const fruits = ['Apple', 'Banana', 'Orange'];</code>
+                </p>
+                <p>This is a normal JavaScript array.</p>
+                <p>Each item is a string.</p>
+                <p>React does nothing special here yet.</p>
+                <p>
+                  <code>&lt;ul&gt;</code>
+                </p>
+                <p>This is JSX.</p>
+                <p>It represents an unordered list in the browser (<code>&lt;ul&gt;</code> in HTML).</p>
+                <p>JSX looks like HTML, but it is actually JavaScript under the hood.</p>
+                <p>
+                  <code>{'{fruits.map((fruit, index) => ('}</code>
+                </p>
+                <p>
+                  <code>{'{}'}</code> means &ldquo;run JavaScript here inside JSX&rdquo;.
+                </p>
+                <p>
+                  <code>map()</code> loops over every element in the <code>fruits</code> array.
+                </p>
+                <p>For each item:</p>
+                <p>
+                  <code>fruit</code> is the current value (&apos;Apple&apos;, then &apos;Banana&apos;, then
+                  &apos;Orange&apos;).
+                </p>
+                <p>
+                  <code>index</code> is the position (<code>0</code>, <code>1</code>, <code>2</code>).
+                </p>
+                <p>
+                  <code>map()</code> returns a new array, not a single value.
+                </p>
+                <p>In React, that returned array can directly contain JSX elements.</p>
+                <p>
+                  <code>&lt;li key={'{index}'}&gt;{'{fruit}'}&lt;/li&gt;</code>
+                </p>
+                <p>This JSX runs once per fruit.</p>
+                <p>
+                  <code>&lt;li&gt;</code> is a list item element.
+                </p>
+                <p>
+                  <code>{'{fruit}'}</code> inserts the current fruit name as text.
+                </p>
+                <p>
+                  <code>key={'{index}'}</code> helps React identify each list item when updating the UI.
+                </p>
+                <p>React uses keys to efficiently re-render lists.</p>
+                <p>Using index works for simple static lists, but it is not ideal for dynamic lists.</p>
+                <p>
+                  <code>{'))}'}</code>
+                </p>
+                <p>This closes the arrow function and the <code>map()</code> call.</p>
+                <p>
+                  At this point, <code>map()</code> has produced:
+                </p>
+                <CodeBlock
+                  code={`[
+  <li>Apple</li>,
+  <li>Banana</li>,
+  <li>Orange</li>
+]`}
+                  language="jsx"
+                />
+                <p>
+                  <code>&lt;/ul&gt;</code>
+                </p>
+                <p>React inserts the generated <code>&lt;li&gt;</code> elements inside the <code>&lt;ul&gt;</code>.</p>
+                <p>The final rendered HTML looks like:</p>
+                <CodeBlock
+                  code={`<ul>
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Orange</li>
+</ul>`}
+                  language="html"
+                />
+                <p>
+                  <strong>Key concept to remember:</strong> React does not loop in JSX. JavaScript loops (
+                  <code>map</code>) run first, and JSX is just the output of those loops.
+                </p>
+              </div>
             </div>
             <div className="interactive-demo">
               <h4>Live Demo:</h4>
@@ -199,6 +288,123 @@ export function ListsAndKeys() {
                 React won't know which item is which, causing bugs and performance issues. Always use a <strong>stable, unique ID</strong>
                 like <code>item.id</code>. This tells React exactly which item changed.
               </p>
+              <button
+                className="demo-button"
+                onClick={() => setShowExample3Explanation(!showExample3Explanation)}
+                style={{ marginTop: '8px' }}
+              >
+                {showExample3Explanation ? 'Hide Explanation' : 'Show Explanation'}
+              </button>
+              {showExample3Explanation && (
+                <div className="explanation" style={{ marginTop: '12px' }}>
+                  <h4>Bad approach: using array index as key</h4>
+                  <CodeBlock
+                    code={`{items.map((item, index) => (
+  <div key={index}>{item}</div>
+))}`}
+                    language="jsx"
+                  />
+                  <h5>Line by line</h5>
+                  <p>
+                    <code>items.map((item, index) =&gt; (</code>
+                  </p>
+                  <p>
+                    <code>map()</code> loops over the <code>items</code> array.
+                  </p>
+                  <p>
+                    <code>item</code> is the current value.
+                  </p>
+                  <p>
+                    <code>index</code> is the position in the array: <code>0, 1, 2, ...</code>
+                  </p>
+                  <p>
+                    <code>&lt;div key=&#123;index&#125;&gt;&#123;item&#125;&lt;/div&gt;</code>
+                  </p>
+                  <p>React renders a <code>&lt;div&gt;</code> for each item.</p>
+                  <p>
+                    <code>key=&#123;index&#125;</code> uses the position as the identifier.
+                  </p>
+
+                  <h5>Why this is a problem</h5>
+                  <p>
+                    React uses <code>key</code> to track which element is which between renders.
+                    If the array changes, the index changes.
+                  </p>
+                  <p>Example:</p>
+                  <CodeBlock
+                    code={`['A', 'B', 'C']`}
+                    language="jsx"
+                  />
+                  <p>Keys: <code>0, 1, 2</code></p>
+                  <p>Insert a new item at the top:</p>
+                  <CodeBlock
+                    code={`['X', 'A', 'B', 'C']`}
+                    language="jsx"
+                  />
+                  <p>Keys now become: <code>0, 1, 2, 3</code></p>
+                  <p>React thinks:</p>
+                  <p>
+                    <code>'A'</code> is the old <code>'B'</code>
+                  </p>
+                  <p>
+                    <code>'B'</code> is the old <code>'C'</code>
+                  </p>
+                  <p>Result:</p>
+                  <p>Wrong DOM updates.</p>
+                  <p>Inputs lose focus.</p>
+                  <p>State sticks to the wrong item.</p>
+                  <p>Index keys describe position, not identity.</p>
+
+                  <h4>Good approach: using stable unique IDs</h4>
+                  <CodeBlock
+                    code={`{items.map(item => (
+  <div key={item.id}>{item.name}</div>
+))}`}
+                    language="jsx"
+                  />
+                  <h5>Line by line</h5>
+                  <p>
+                    <code>items.map(item =&gt; (</code>
+                  </p>
+                  <p>Loop over the array.</p>
+                  <p>Each item is an object.</p>
+                  <p>
+                    <code>&lt;div key=&#123;item.id&#125;&gt;&#123;item.name&#125;&lt;/div&gt;</code>
+                  </p>
+                  <p>
+                    <code>key=&#123;item.id&#125;</code> gives React a stable identity.
+                  </p>
+                  <p>The key stays the same even if the item moves.</p>
+                  <p>
+                    <code>&#123;item.name&#125;</code> displays the item label.
+                  </p>
+
+                  <h5>Why this works</h5>
+                  <p>If the array changes order:</p>
+                  <CodeBlock
+                    code={`[{id: 3}, {id: 1}, {id: 2}]`}
+                    language="jsx"
+                  />
+                  <p>React still knows:</p>
+                  <p>This DOM node belongs to item <code>id: 1</code>.</p>
+                  <p>This one belongs to item <code>id: 2</code>.</p>
+                  <p>So:</p>
+                  <p>Correct updates.</p>
+                  <p>No visual glitches.</p>
+                  <p>Component state stays attached to the right item.</p>
+
+                  <h5>The core rule (remember this)</h5>
+                  <p>
+                    Keys tell React <code>"who is who"</code>, not <code>"where is where"</code>.
+                  </p>
+                  <p>Index is only safe when:</p>
+                  <p>List never changes.</p>
+                  <p>No insertions.</p>
+                  <p>No deletions.</p>
+                  <p>No reordering.</p>
+                  <p>In real apps, those conditions rarely hold.</p>
+                </div>
+              )}
             </div>
             <div className="interactive-demo">
               <h4>Live Demo:</h4>

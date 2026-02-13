@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import ExampleCard from '../components/ExampleCard';
 import TailwindDemo from '../components/TailwindDemo';
 import InteractiveStylingSandbox from '../components/InteractiveStylingSandbox';
 
 export default function Styling() {
+  const [showTailwindExplanation, setShowTailwindExplanation] = useState(false);
+
   return (
     <Layout>
       <div className="topic-page">
@@ -195,6 +197,100 @@ function Button() {
             Pros: Fastest dev, smallest CSS bundle, consistent design system
             <br/>Cons: Markup gets verbose, setup required, learning curve
           </div>
+          <button
+            className="demo-button"
+            onClick={() => setShowTailwindExplanation(!showTailwindExplanation)}
+            style={{ marginTop: '12px' }}
+          >
+            EXPLANTION
+          </button>
+          {showTailwindExplanation && (
+            <div className="topic-content" style={{ marginTop: '16px' }}>
+              <h3>Tailwind CSS - Utility-First</h3>
+
+              <h4>What it is</h4>
+              <p>Tailwind is a CSS framework built around utility classes.</p>
+              <p>Instead of writing custom CSS like this:</p>
+              <pre className="code-block"><code>{`.card {
+  padding: 1rem;
+  background: blue;
+  border-radius: 8px;
+}`}</code></pre>
+              <p>You write styles directly in your markup:</p>
+              <pre className="code-block"><code>{`<div class="px-4 bg-blue-500 rounded-lg"></div>`}</code></pre>
+              <p>Each class does one small job:</p>
+              <p><code>px-4</code> -&gt; horizontal padding</p>
+              <p><code>bg-blue-500</code> -&gt; background color</p>
+              <p><code>rounded-lg</code> -&gt; border radius</p>
+              <p>You compose these like LEGO blocks. No custom class names. No separate CSS file for most components.</p>
+
+              <h4>Why this approach exists</h4>
+              <p>Traditional CSS has real problems:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>Class naming is hard and inconsistent</li>
+                <li>Styles leak and override each other</li>
+                <li>You spend time jumping between HTML and CSS files</li>
+                <li>Refactoring is risky</li>
+              </ul>
+              <p>Tailwind trades abstraction for explicitness.</p>
+              <p>You see the styling exactly where the element is defined.</p>
+              <p>That&apos;s the core idea.</p>
+
+              <h4>When to use it</h4>
+              <p>Tailwind works best when:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>Speed matters more than perfect abstraction</li>
+                <li>UI changes frequently</li>
+                <li>Many developers touch the same codebase</li>
+              </ul>
+              <p>That&apos;s why it fits:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>Startups</li>
+                <li>Marketing pages</li>
+                <li>Dashboards</li>
+                <li>MVPs</li>
+                <li>Teams iterating daily</li>
+              </ul>
+              <p>It is less ideal for:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>Very small static sites</li>
+                <li>Teams that strongly prefer traditional CSS separation</li>
+                <li>Designers who want semantic class names over visual ones</li>
+              </ul>
+              <p>So it&apos;s a trade-off, not a universal win.</p>
+
+              <h4>&ldquo;Build UIs 3x faster&rdquo; - what that really means</h4>
+              <p>Teams using Tailwind tend to:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>Write less CSS</li>
+                <li>Avoid bikeshedding over class names</li>
+                <li>Skip context switching between files</li>
+                <li>Reuse patterns mentally, not via inheritance</li>
+              </ul>
+              <p>Companies like Vercel, Stripe, and Figma use Tailwind not because it&apos;s trendy, but because:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>It scales well across teams</li>
+                <li>It enforces consistency through configuration</li>
+                <li>It keeps UI work fast and predictable</li>
+              </ul>
+              <p>The &ldquo;3x faster&rdquo; claim isn&apos;t magic. It&apos;s fewer decisions, fewer files, and fewer surprises.</p>
+
+              <h4>Key takeaway</h4>
+              <p>Tailwind is not &ldquo;no CSS&rdquo;. It is CSS with constraints.</p>
+              <p>You give up:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>Semantic class names</li>
+                <li>Traditional separation of concerns</li>
+              </ul>
+              <p>You gain:</p>
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>Speed</li>
+                <li>Consistency</li>
+                <li>Confidence when refactoring</li>
+              </ul>
+              <p>Whether that&apos;s a good deal depends on your project, not on hype.</p>
+            </div>
+          )}
         </ExampleCard>
 
         <TailwindDemo />

@@ -217,7 +217,6 @@ export default function Intro() {
             </div>
           )}
         </div>
-
         {/* Part 5 */}
         <div className="section">
           <button 
@@ -230,25 +229,166 @@ export default function Intro() {
           </button>
           {expandedSections['part5'] && (
             <div className="section-content">
-              <h3>Step 1: Install Node.js</h3>
-              <ol className="setup-steps">
-                <li>Go to: <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">https://nodejs.org</a></li>
-                <li>Download <strong>LTS version</strong> (not current)</li>
-                <li>Install → next → next → finish</li>
-              </ol>
-              <p className="note">⚠️ React beginners should always use LTS</p>
-
-              <h3>Step 2: Verify Installation</h3>
-              <p>Open PowerShell or Command Prompt and type:</p>
+              <h3>1. Step-by-step process of setting up a React project using Vite</h3>
+              <h4>Step 1: Ensure prerequisites</h4>
+              <p>You must have Node.js installed because Vite uses npm.</p>
               <pre className="code-block">
 {`node -v
 npm -v`}
               </pre>
-              <p className="note">You must see version numbers</p>
+
+              <h4>Step 2: Create a new Vite project</h4>
+              <p>Run the following command in the terminal:</p>
+              <pre className="code-block">
+{`npm create vite@latest my-react-app`}
+              </pre>
+              <ul>
+                <li>Choose React as the framework.</li>
+                <li>Choose JavaScript or JavaScript + SWC.</li>
+              </ul>
+
+              <h4>Step 3: Navigate into the project folder</h4>
+              <pre className="code-block">
+{`cd my-react-app`}
+              </pre>
+
+              <h4>Step 4: Install dependencies</h4>
+              <pre className="code-block">
+{`npm install`}
+              </pre>
+
+              <h4>Step 5: Start the development server</h4>
+              <pre className="code-block">
+{`npm run dev`}
+              </pre>
+              <p>The app opens in the browser, usually at <code>http://localhost:5173</code>.</p>
+              <p className="note">
+                Why Vite is used: Vite provides fast startup, instant hot reload, and simpler configuration compared to older tools.
+              </p>
+
+              <h3>2. React directory structure and role of important files</h3>
+              <h4>Typical Vite + React folder structure</h4>
+              <pre className="code-block">
+{`my-react-app/
+|
+|-- index.html
+|-- package.json
+|-- vite.config.js
+|-- src/
+|   |-- main.jsx
+|   |-- App.jsx
+|   |-- App.css
+|   |-- index.css
+|-- node_modules/`}
+              </pre>
+
+              <h4>Important files explained</h4>
+              <p><strong>index.html</strong></p>
+              <pre className="code-block">
+{`<div id="root"></div>`}
+              </pre>
+              <ul>
+                <li>The single HTML entry point.</li>
+                <li>React injects the UI into this root div.</li>
+              </ul>
+
+              <p><strong>main.jsx</strong></p>
+              <pre className="code-block">
+{`import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <App />
+);`}
+              </pre>
+              <ul>
+                <li>Entry point of the React app.</li>
+                <li>Connects React to the browser DOM.</li>
+              </ul>
+
+              <p><strong>App.jsx</strong></p>
+              <pre className="code-block">
+{`function App() {
+  return <h1>Hello React</h1>;
+}
+
+export default App;`}
+              </pre>
+              <ul>
+                <li>Main component.</li>
+                <li>UI logic starts here.</li>
+              </ul>
+
+              <p><strong>package.json</strong></p>
+              <p>Manages dependencies and scripts like <code>npm run dev</code>.</p>
+
+              <h3>3. How JSX works and why React uses it</h3>
+              <h4>Example of JSX</h4>
+              <pre className="code-block">
+{`const element = <h1>Hello World</h1>;`}
+              </pre>
+
+              <h4>What JSX really is</h4>
+              <p>JSX is not HTML. It is converted into JavaScript like this:</p>
+              <pre className="code-block">
+{`const element = React.createElement("h1", null, "Hello World");`}
+              </pre>
+
+              <h4>Why React uses JSX</h4>
+              <ul>
+                <li>Combines UI and logic in one place.</li>
+                <li>Easier to read than raw createElement calls.</li>
+                <li>Catches errors at compile time.</li>
+                <li>Prevents injection attacks by default.</li>
+              </ul>
+              <p>
+                Why not plain HTML or JavaScript? HTML cannot handle logic, and plain JS becomes unreadable for large UIs. JSX balances both.
+              </p>
+
+              <h3>4. Application rendering sequence (main.jsx to browser)</h3>
+              <h4>Step 1: Browser loads index.html</h4>
+              <pre className="code-block">
+{`<div id="root"></div>`}
+              </pre>
+
+              <h4>Step 2: main.jsx executes</h4>
+              <pre className="code-block">
+{`ReactDOM.createRoot(document.getElementById("root")).render(<App />);`}
+              </pre>
+              <ul>
+                <li>React finds the root div.</li>
+                <li>Creates a virtual DOM root.</li>
+              </ul>
+
+              <h4>Step 3: App.jsx component is rendered</h4>
+              <pre className="code-block">
+{`function App() {
+  return <h1>Hello React</h1>;
+}`}
+              </pre>
+              <ul>
+                <li>JSX is converted to JavaScript.</li>
+                <li>Virtual DOM nodes are created.</li>
+              </ul>
+
+              <h4>Step 4: React updates the real DOM</h4>
+              <ul>
+                <li>React compares Virtual DOM with actual DOM.</li>
+                <li>Only required changes are applied.</li>
+              </ul>
+
+              <h4>Final result</h4>
+              <p>The browser displays:</p>
+              <pre className="code-block">
+{`Hello React`}
+              </pre>
+              <p className="note">
+                Why this rendering model matters: It improves performance and keeps UI updates predictable.
+              </p>
             </div>
           )}
         </div>
-
         {/* Part 6 */}
         <div className="section">
           <button 
@@ -509,3 +649,4 @@ function App() {
     </Layout>
   );
 }
+
