@@ -39,6 +39,9 @@ export function Navbar() {
           <li className="nav-item">
             <Link to="/styling" className="nav-link">Styling in React</Link>
           </li>
+          <li className="nav-item">
+            <Link to="/mcqs-bank" className="nav-link">MCQs Bank</Link>
+          </li>
         </ul>
       </div>
     </nav>

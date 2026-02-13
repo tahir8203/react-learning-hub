@@ -10,6 +10,7 @@ import StateAndProps from './pages/StateAndProps';
 import EventHandling from './pages/EventHandling';
 import ConditionalRendering from './pages/ConditionalRendering';
 import ListsAndKeys from './pages/ListsAndKeys';
+import MCQsBank from './pages/MCQsBank';
 import './styles.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/event-handling" element={<EventHandling />} />
         <Route path="/conditional" element={<ConditionalRendering />} />
         <Route path="/lists-keys" element={<ListsAndKeys />} />
+        <Route path="/mcqs-bank" element={<MCQsBank />} />
         <Route path="/styling" element={<Styling />} />
       </Routes>
     </Router>
