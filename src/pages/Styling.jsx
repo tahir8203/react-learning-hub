@@ -1,11 +1,40 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import ExampleCard from '../components/ExampleCard';
-import TailwindDemo from '../components/TailwindDemo';
 import InteractiveStylingSandbox from '../components/InteractiveStylingSandbox';
 
 export default function Styling() {
   const [showTailwindExplanation, setShowTailwindExplanation] = useState(false);
+  const [tailwindCount, setTailwindCount] = useState(0);
+
+  const tailwindReactCounterCode = `import { useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded-xl shadow-xl w-80 text-center">
+        <h1 className="text-2xl font-bold text-blue-600 mb-4">
+          Counter App
+        </h1>
+
+        <p className="text-gray-700 text-lg mb-4">
+          Count: {count}
+        </p>
+
+        <button
+          onClick={() => setCount(count + 1)}
+          className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded"
+        >
+          Increase
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default App;`;
 
   return (
     <Layout>
@@ -293,7 +322,6 @@ function Button() {
           )}
         </ExampleCard>
 
-        <TailwindDemo />
         <InteractiveStylingSandbox />
 
         {/* Tailwind Setup */}
@@ -336,6 +364,117 @@ import './index.css'
 <div className="p-4 bg-white rounded-lg shadow">
   Content
 </div>`}</code></pre>
+
+            <h3 style={{ marginTop: '20px' }}>Beginner Tailwind Lesson (Week 13)</h3>
+            <p>
+              Since Tailwind CSS is covered in Week 13 (Styling in React - Tailwind CSS) in your course outline,
+              here is a basic beginner explanation.
+            </p>
+
+            <h4>What is Tailwind CSS?</h4>
+            <p>Tailwind is a utility-first CSS framework.</p>
+            <p>Instead of writing custom CSS:</p>
+            <pre className="code-block"><code>{`.box {
+  background: blue;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}`}</code></pre>
+            <p>You write classes directly in HTML:</p>
+            <pre className="code-block"><code>{`class="bg-blue-500 text-white p-5 rounded-lg"`}</code></pre>
+            <p>Tailwind = small ready-made utility classes.</p>
+
+            <h4>Simple Tailwind Example (Beginner)</h4>
+            <p><strong>Step 1: Include Tailwind CDN</strong></p>
+            <pre className="code-block"><code>{`<!DOCTYPE html>
+<html>
+<head>
+  <title>Tailwind Example</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">`}</code></pre>
+            <p><strong>Step 2: Create a Simple Card</strong></p>
+            <pre className="code-block"><code>{`<div class="flex justify-center items-center h-screen">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-80 text-center">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">Student Card</h2>
+    <p class="text-gray-600 mb-4">Welcome to Web Development Class.</p>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">
+      Click Me
+    </button>
+  </div>
+</div>`}</code></pre>
+
+            <h4>Breakdown of Classes</h4>
+            <p><strong>1) Body:</strong> <code>bg-gray-100</code>{' -> '}light gray background.</p>
+            <p><strong>2) Centering:</strong> <code>flex</code>, <code>justify-center</code>, <code>items-center</code>, <code>h-screen</code>.</p>
+            <p><strong>3) Card:</strong> <code>bg-white</code>, <code>p-6</code>, <code>rounded-lg</code>, <code>shadow-lg</code>, <code>w-80</code>, <code>text-center</code>.</p>
+            <p><strong>4) Heading:</strong> <code>text-2xl</code>, <code>font-bold</code>, <code>text-blue-600</code>, <code>mb-4</code>.</p>
+            <p><strong>5) Button:</strong> <code>bg-blue-500</code>, <code>hover:bg-blue-700</code>, <code>text-white</code>, <code>px-4</code>, <code>py-2</code>, <code>rounded</code>.</p>
+
+            <h4>Output You Will See</h4>
+            <ul style={{ paddingLeft: '20px' }}>
+              <li>Light gray background</li>
+              <li>White card in center</li>
+              <li>Blue heading</li>
+              <li>Styled button with hover effect</li>
+            </ul>
+
+            <h4>Why Tailwind is Powerful</h4>
+            <ul style={{ paddingLeft: '20px' }}>
+              <li>No custom CSS file needed for many components</li>
+              <li>Everything can stay inside class attributes</li>
+              <li>Faster UI building in React projects</li>
+            </ul>
+
+            <h4>How to Use in React (Vite)</h4>
+            <p><strong>Step 1: Create React App</strong></p>
+            <pre className="code-block"><code>{`npm create vite@latest my-app
+cd my-app
+npm install
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p`}</code></pre>
+            <p><strong>Step 2: Configure Tailwind</strong></p>
+            <pre className="code-block"><code>{`// tailwind.config.js
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}`}</code></pre>
+            <pre className="code-block"><code>{`/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;`}</code></pre>
+            <p><strong>Step 3: Simple React Component</strong></p>
+            <pre className="code-block"><code>{tailwindReactCounterCode}</code></pre>
+
+            <h4>Teaching Notes</h4>
+            <p><strong>1) useState(0):</strong> <code>count</code> stores value, <code>setCount</code> updates value, initial value is <code>0</code>.</p>
+            <p><strong>2) className:</strong> In React use <code>className</code> instead of <code>class</code>.</p>
+            <p><strong>3) Layout classes:</strong> <code>flex</code>, <code>justify-center</code>, <code>items-center</code>, <code>h-screen</code>, <code>bg-gray-100</code>.</p>
+            <p><strong>4) Card classes:</strong> <code>bg-white</code>, <code>p-6</code>, <code>rounded-xl</code>, <code>shadow-xl</code>, <code>w-80</code>, <code>text-center</code>.</p>
+            <p><strong>5) Button classes:</strong> <code>bg-blue-500</code>, <code>hover:bg-blue-700</code>, <code>text-white</code>, <code>px-4</code>, <code>py-2</code>, <code>rounded</code>.</p>
+
+            <h4>Interactive Output (Counter App)</h4>
+            <div className="demo-output" style={{ background: '#f3f4f6', padding: 16, borderRadius: 10 }}>
+              <div style={{ background: '#fff', padding: 20, borderRadius: 12, boxShadow: '0 8px 18px rgba(0,0,0,0.08)', maxWidth: 320, margin: '0 auto', textAlign: 'center' }}>
+                <h5 style={{ color: '#2563eb', fontSize: 24, marginBottom: 12 }}>Counter App</h5>
+                <p style={{ marginBottom: 12 }}>Count: <strong>{tailwindCount}</strong></p>
+                <button
+                  className="demo-button"
+                  onClick={() => setTailwindCount(tailwindCount + 1)}
+                >
+                  Increase
+                </button>
+              </div>
+              <p className="note" style={{ marginTop: 10 }}>
+                Output: Centered card, blue heading, live counter value, and working button click event.
+              </p>
+            </div>
 
             <h3>Common Classes Reference</h3>
             <pre className="code-block"><code>{`Spacing:  p-4, m-2, gap-3 (padding, margin, gaps)

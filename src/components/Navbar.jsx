@@ -40,6 +40,9 @@ export function Navbar() {
             <Link to="/styling" className="nav-link">Styling in React</Link>
           </li>
           <li className="nav-item">
+            <Link to="/react-forms" className="nav-link">React Forms</Link>
+          </li>
+          <li className="nav-item">
             <Link to="/mcqs-bank" className="nav-link">MCQs Bank</Link>
           </li>
         </ul>
